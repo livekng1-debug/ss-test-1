@@ -1,18 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { ProductGrid } from "@/components/ProductGrid";
+import { Footer } from "@/components/Footer";
+import { useCartSync } from "@/hooks/useCartSync";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Fully REPLACE this with your own code
-function PlaceholderIndex() {
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  useCartSync();
+
+  return (
+    <>
+      <Header />
+      <main>
+        <HeroSection />
+        <ProductGrid />
+      </main>
+      <Footer />
+    </>
+  );
 }
