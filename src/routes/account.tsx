@@ -14,7 +14,10 @@ const DEMO_ORDERS: ShopifyOrder[] = [
     financialStatus: "PAID",
     fulfillmentStatus: "FULFILLED",
     totalPrice: { amount: "89.00", currencyCode: "USD" },
-    lineItems: { edges: [{ node: { title: "Sunslayer Vintage Tee - Black", quantity: 1, variant: { image: null, price: { amount: "45.00", currencyCode: "USD" } } } }, { node: { title: "Sunslayer Dad Hat", quantity: 1, variant: { image: null, price: { amount: "44.00", currencyCode: "USD" } } } }] },
+    lineItems: { edges: [
+      { node: { title: "2 Face T-ech Tee", quantity: 1, variant: { image: { url: "https://cdn.shopify.com/s/files/1/0603/3693/0954/files/3ED9EDC9-ABA1-4ECB-A80E-7CD624F5AE6A.png?v=1768315725", altText: "2 Face T-ech Tee" }, price: { amount: "45.00", currencyCode: "USD" } } } },
+      { node: { title: "GREENWAVE HOODIE", quantity: 1, variant: { image: { url: "https://cdn.shopify.com/s/files/1/0603/3693/0954/files/4A0432AB-7A8A-438E-A8EE-F32B72F1C4CC.png?v=1769081483", altText: "GREENWAVE HOODIE" }, price: { amount: "44.00", currencyCode: "USD" } } } },
+    ] },
     successfulFulfillments: [{ trackingCompany: "USPS", trackingInfo: [{ number: "9400111899223456789012", url: "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223456789012" }] }],
   },
   {
@@ -25,7 +28,9 @@ const DEMO_ORDERS: ShopifyOrder[] = [
     financialStatus: "PAID",
     fulfillmentStatus: "FULFILLED",
     totalPrice: { amount: "55.00", currencyCode: "USD" },
-    lineItems: { edges: [{ node: { title: "Sunslayer Logo Hoodie - Cream", quantity: 1, variant: { image: null, price: { amount: "55.00", currencyCode: "USD" } } } }] },
+    lineItems: { edges: [
+      { node: { title: "BORN SLAYER LONGSLEEVE TEE", quantity: 1, variant: { image: { url: "https://cdn.shopify.com/s/files/1/0603/3693/0954/files/9C504F32-68AC-4FD1-979E-58D57423E82F.png?v=1769371499", altText: "BORN SLAYER LONGSLEEVE TEE" }, price: { amount: "55.00", currencyCode: "USD" } } } },
+    ] },
     successfulFulfillments: [{ trackingCompany: "UPS", trackingInfo: [{ number: "1Z999AA10123456784", url: "https://www.ups.com/track?tracknum=1Z999AA10123456784" }] }],
   },
   {
@@ -36,7 +41,9 @@ const DEMO_ORDERS: ShopifyOrder[] = [
     financialStatus: "PAID",
     fulfillmentStatus: "UNFULFILLED",
     totalPrice: { amount: "35.00", currencyCode: "USD" },
-    lineItems: { edges: [{ node: { title: "Sunslayer Records Tee - White", quantity: 1, variant: { image: null, price: { amount: "35.00", currencyCode: "USD" } } } }] },
+    lineItems: { edges: [
+      { node: { title: "FACE OF EARTH TEE", quantity: 1, variant: { image: { url: "https://cdn.shopify.com/s/files/1/0603/3693/0954/files/75E23C61-994C-4862-8ACA-E64BD0F496EF.jpg?v=1768576017", altText: "FACE OF EARTH TEE" }, price: { amount: "35.00", currencyCode: "USD" } } } },
+    ] },
     successfulFulfillments: [],
   },
   {
@@ -47,7 +54,9 @@ const DEMO_ORDERS: ShopifyOrder[] = [
     financialStatus: "PAID",
     fulfillmentStatus: "UNFULFILLED",
     totalPrice: { amount: "70.00", currencyCode: "USD" },
-    lineItems: { edges: [{ node: { title: "Sunslayer Ring of Time Tee", quantity: 2, variant: { image: null, price: { amount: "35.00", currencyCode: "USD" } } } }] },
+    lineItems: { edges: [
+      { node: { title: "CYFER HILLS Tee", quantity: 2, variant: { image: { url: "https://cdn.shopify.com/s/files/1/0603/3693/0954/files/D3889509-4E62-42EB-9893-27633009468A.jpg?v=1768576017", altText: "CYFER HILLS Tee" }, price: { amount: "35.00", currencyCode: "USD" } } } },
+    ] },
     successfulFulfillments: [{ trackingCompany: "FedEx", trackingInfo: [{ number: "794644790132", url: "https://www.fedex.com/fedextrack/?trknbr=794644790132" }] }],
   },
 ];
@@ -271,7 +280,7 @@ function AccountDashboard({
                           <img
                             src={item.node.variant.image.url}
                             alt={item.node.variant.image.altText || item.node.title}
-                            className="w-10 h-10 object-cover rounded"
+                            className="w-16 h-16 object-cover rounded border border-border"
                           />
                         )}
                         <div className="flex-1 min-w-0">
