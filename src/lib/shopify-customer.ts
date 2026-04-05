@@ -3,7 +3,7 @@ import { storefrontApiRequest } from "./shopify";
 const CUSTOMER_CREATE_MUTATION = `
   mutation customerCreate($input: CustomerCreateInput!) {
     customerCreate(input: $input) {
-      customer { id firstName lastName email }
+      customer { id firstName lastName email acceptsMarketing }
       customerUserErrors { code field message }
     }
   }
