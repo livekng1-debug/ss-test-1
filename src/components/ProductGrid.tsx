@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
+import { fetchCollectionProducts, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
+
+const COLLECTION_HANDLE = "ss-new-beginnings-capsule-001";
 
 export function ProductGrid() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProducts(38)
+    fetchCollectionProducts(COLLECTION_HANDLE, 38)
       .then(setProducts)
       .catch(console.error)
       .finally(() => setLoading(false));

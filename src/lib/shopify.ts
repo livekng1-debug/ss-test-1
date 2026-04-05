@@ -127,6 +127,60 @@ const STOREFRONT_QUERY = `
   }
 `;
 
+const COLLECTION_PRODUCTS_QUERY = `
+  query GetCollectionProducts($handle: String!, $first: Int!) {
+    collectionByHandle(handle: $handle) {
+      id
+      title
+      products(first: $first) {
+        edges {
+          node {
+            id
+            title
+            description
+            handle
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 5) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  availableForSale
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
+              }
+            }
+            options {
+              name
+              values
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const PRODUCT_BY_HANDLE_QUERY = `
   query GetProductByHandle($handle: String!) {
     productByHandle(handle: $handle) {
@@ -176,6 +230,11 @@ const PRODUCT_BY_HANDLE_QUERY = `
 export async function fetchProducts(first = 20, query?: string): Promise<ShopifyProduct[]> {
   const data = await storefrontApiRequest(STOREFRONT_QUERY, { first, query });
   return data?.data?.products?.edges || [];
+}
+
+export async function fetchCollectionProducts(handle: string, first = 50): Promise<ShopifyProduct[]> {
+  const data = await storefrontApiRequest(COLLECTION_PRODUCTS_QUERY, { handle, first });
+  return (data?.data?.collectionByHandle?.products?.edges || []).map((edge: { node: ShopifyProduct['node'] }) => ({ node: edge.node }));
 }
 
 export async function fetchProductByHandle(handle: string): Promise<ShopifyProduct['node'] | null> {
