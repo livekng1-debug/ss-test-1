@@ -102,13 +102,14 @@ function LoginSignupForm({
   isLoading: boolean;
   error: string | null;
   onLogin: (email: string, password: string) => Promise<void>;
-  onSignup: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
+  onSignup: (email: string, password: string, firstName: string, lastName: string, acceptsMarketing?: boolean) => Promise<void>;
 }) {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [acceptsMarketing, setAcceptsMarketing] = useState(true);
   const [localError, setLocalError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
