@@ -23,6 +23,8 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
 
   if (!isOpen) return null;
 
+  const accountLink = { to: "/account" as const, search: {} };
+
   return (
     <div className="fixed inset-0 z-[60]">
       <div ref={dropdownRef} className="absolute right-5 top-14 w-[300px] bg-background border border-border shadow-lg p-5">
@@ -35,7 +37,7 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
 
             <div className="flex gap-2 mb-4">
               <Link
-                to="/account"
+                {...accountLink}
                 onClick={onClose}
                 className="flex-1 flex items-center justify-center gap-2 border border-border py-2.5 text-[10px] uppercase tracking-widest text-foreground hover:bg-muted transition-colors"
               >
@@ -43,7 +45,7 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
                 Orders
               </Link>
               <Link
-                to="/account"
+                {...accountLink}
                 onClick={onClose}
                 className="flex-1 flex items-center justify-center gap-2 border border-border py-2.5 text-[10px] uppercase tracking-widest text-foreground hover:bg-muted transition-colors"
               >
@@ -77,7 +79,7 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
             </a>
 
             <Link
-              to="/account"
+              {...accountLink}
               onClick={onClose}
               className="block w-full text-center py-3 bg-foreground text-background text-[10px] uppercase tracking-widest hover:opacity-80 transition-opacity mb-4"
             >
@@ -86,7 +88,7 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
 
             <div className="flex gap-2">
               <Link
-                to="/account"
+                {...accountLink}
                 onClick={onClose}
                 className="flex-1 flex items-center justify-center gap-2 border border-border py-2.5 text-[10px] uppercase tracking-widest text-foreground hover:bg-muted transition-colors"
               >
@@ -94,7 +96,7 @@ export function AccountDropdown({ isOpen, onClose }: { isOpen: boolean; onClose:
                 Orders
               </Link>
               <Link
-                to="/account"
+                {...accountLink}
                 onClick={onClose}
                 className="flex-1 flex items-center justify-center gap-2 border border-border py-2.5 text-[10px] uppercase tracking-widest text-foreground hover:bg-muted transition-colors"
               >
