@@ -85,6 +85,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isUnlocked, checkStorage } = usePasswordStore();
+
+  useEffect(() => {
+    checkStorage();
+  }, [checkStorage]);
+
+  useEffect(() => {
+    const isPasswordPage = location.pathname === '/password';
+    if (!isUnlocked && !isPasswordPage) {
+      navigate({ to: '/password' });
+    }
+  }, [isUnlocked, location.pathname, navigate]);
+
   return (
     <>
       <Outlet />
