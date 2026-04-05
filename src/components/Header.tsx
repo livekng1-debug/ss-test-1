@@ -22,17 +22,19 @@ export function Header() {
             </button>
           </div>
 
-        <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="text-3xl sm:text-4xl font-normal" style={{ fontFamily: "'Pinyon Script', cursive" }}>Sunslayer Hills</h1>
-        </Link>
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+            <h1 className="text-3xl sm:text-4xl font-normal" style={{ fontFamily: "'Pinyon Script', cursive" }}>Sunslayer Hills</h1>
+          </Link>
 
-        <div className="flex items-center gap-6">
-          <span className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity">
-            Account
-          </span>
-          <CartDrawer />
+          <div className="flex items-center gap-6">
+            <span className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity">
+              Account
+            </span>
+            <CartDrawer />
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+    </>
   );
 }
