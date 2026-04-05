@@ -1,7 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Instagram } from "lucide-react";
 
 export const Route = createFileRoute("/password")({
@@ -9,73 +7,120 @@ export const Route = createFileRoute("/password")({
 });
 
 function PasswordPage() {
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("Wrong password. Please try again.");
+    // For now, any non-empty password grants access
+    if (password.trim()) {
+      navigate({ to: "/" });
+    } else {
+      setError("Please enter a password.");
+    }
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
-      <div className="w-full max-w-md text-center">
-        <h1 className="text-[11px] font-normal uppercase tracking-[0.3em] text-foreground">
+    <div className="flex min-h-screen flex-col bg-background">
+      {/* Main content — centered brand name */}
+      <div className="flex flex-1 flex-col items-center justify-center px-4">
+        <h1
+          className="text-6xl sm:text-8xl md:text-9xl font-normal text-foreground"
+          style={{ fontFamily: "'Pinyon Script', cursive" }}
+        >
           Sunslayer Hills
         </h1>
 
-        <div className="mt-12 border-t border-border pt-12">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            Opening Soon
-          </p>
+        <p className="mt-6 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+          Coming Soon
+        </p>
 
-          <p className="mt-6 text-[12px] leading-relaxed text-muted-foreground">
-            We are currently updating our store. Please check back soon or enter
-            the password below to access the store.
-          </p>
-
-          <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-            <Input
+        {/* Enter password toggle */}
+        {!showPasswordInput ? (
+          <button
+            onClick={() => setShowPasswordInput(true)}
+            className="mt-10 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-foreground transition-colors underline underline-offset-4"
+          >
+            Enter using password
+          </button>
+        ) : (
+          <form onSubmit={handleSubmit} className="mt-8 flex w-full max-w-xs items-center gap-2">
+            <input
               type="password"
-              placeholder="Enter store password"
+              placeholder="Password"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
                 setError("");
               }}
-              className="h-10 border-border bg-transparent text-center text-[11px] uppercase tracking-[0.15em] placeholder:text-muted-foreground/50"
+              autoFocus
+              className="flex-1 border-b border-border bg-transparent py-2 text-center text-[11px] uppercase tracking-[0.15em] text-foreground outline-none placeholder:text-muted-foreground/40 focus:border-foreground transition-colors"
             />
-            {error && (
-              <p className="text-[11px] text-destructive">{error}</p>
-            )}
-            <Button
+            <button
               type="submit"
-              className="w-full h-10 text-[11px] uppercase tracking-[0.2em] font-normal"
+              className="text-foreground hover:opacity-60 transition-opacity p-1"
+              aria-label="Submit password"
             >
-              Enter
-            </Button>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </form>
-        </div>
-
-        <div className="mt-16 border-t border-border pt-8">
-          <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-            Be the first to know when we launch
-          </p>
-
-          <a
-            href="https://www.instagram.com/sunslayerhills/?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <Instagram className="h-4 w-4" />
-          </a>
-        </div>
-
-        <p className="mt-12 text-[9px] uppercase tracking-[0.15em] text-muted-foreground/50">
-          © {new Date().getFullYear()} Sunslayer Hills. All rights reserved.
-        </p>
+        )}
+        {error && (
+          <p className="mt-2 text-[11px] text-destructive">{error}</p>
+        )}
       </div>
+
+      {/* Footer — Join the club section */}
+      <footer className="border-t border-border">
+        <div className="px-5 py-12 max-w-[1400px] mx-auto">
+          <h2
+            className="text-2xl font-light tracking-tight mb-2"
+            style={{ fontFamily: "'Courier New', monospace" }}
+          >
+            Join the Sunslayer Hills club.
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+            <p className="text-[12px] text-muted-foreground max-w-xs">
+              Get exclusive deals and early access to new products.
+            </p>
+            <div className="flex-1 flex items-center gap-2 max-w-xl">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="flex-1 bg-transparent border-b border-border text-sm py-2 px-1 outline-none placeholder:text-muted-foreground focus:border-foreground transition-colors"
+              />
+              <button
+                className="text-foreground hover:opacity-70 transition-opacity p-2"
+                aria-label="Subscribe"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-5 py-6 border-t border-border">
+          <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
+              © {new Date().getFullYear()} Sunslayer Hills
+            </p>
+            <a
+              href="https://www.instagram.com/sunslayerhills/?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Instagram size={20} strokeWidth={1.5} />
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
