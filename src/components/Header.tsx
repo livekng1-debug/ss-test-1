@@ -27,9 +27,9 @@ export function Header() {
           </Link>
 
           <div className="flex items-center gap-6">
-            <span className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity">
+            <Link to="/account" className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity">
               Account
-            </span>
+            </Link>
             <CartDrawer />
           </div>
         </div>
