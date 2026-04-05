@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Instagram } from "lucide-react";
 
 export function Footer() {
@@ -34,11 +35,11 @@ export function Footer() {
             <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
               © {new Date().getFullYear()} Sunslayer Hills,
             </p>
-            <a href="#" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Shipping Policy</a>
-            <a href="#" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
-            <a href="#" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Refund Policy</a>
-            <a href="#" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Contact Information</a>
+            <Link to="/privacy-policy" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link to="/shipping-policy" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Shipping Policy</Link>
+            <Link to="/terms-of-service" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
+            <Link to="/refund-policy" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
+            <Link to="/contact" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Contact Information</Link>
           </div>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
             <Instagram size={20} strokeWidth={1.5} />
