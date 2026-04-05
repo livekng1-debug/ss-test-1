@@ -164,7 +164,7 @@ function PrivacyPolicyPage() {
         Contact:
       </h2>
       <p>
-        Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please email us at support@sunslayerhills.com. For the purpose of applicable data protection laws, we are the data controller of your personal information.
+        Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please email us at help@sunslayerhills.com. For the purpose of applicable data protection laws, we are the data controller of your personal information.
       </p>
 
       <h2 className="text-lg uppercase tracking-widest text-foreground font-bold pt-6" style={{ fontFamily: "'Courier New', monospace" }}>
