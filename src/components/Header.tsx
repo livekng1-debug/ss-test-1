@@ -15,7 +15,7 @@ export function Header() {
         </div>
 
         <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="text-base font-light tracking-ro-wide uppercase italic">ICARUS</h1>
+          <h1 className="text-xl font-normal" style={{ fontFamily: "'Pinyon Script', cursive" }}>Sunslayer Hills</h1>
         </Link>
 
         <div className="flex items-center gap-6">
