@@ -17,7 +17,7 @@ export function ProductGrid() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
       </div>
     );
   }
@@ -25,15 +25,14 @@ export function ProductGrid() {
   if (products.length === 0) {
     return (
       <div className="text-center py-20">
-        <p className="text-sm text-muted-foreground uppercase tracking-fashion">No products found</p>
+        <p className="text-[11px] text-muted-foreground uppercase tracking-ro">No products found</p>
       </div>
     );
   }
 
   return (
-    <section id="products" className="px-6 sm:px-12 py-20 sm:py-32 max-w-[1400px] mx-auto">
-      <h2 className="text-[10px] uppercase tracking-wide-fashion text-muted-foreground/50 mb-14">Collection</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+    <section id="products" className="px-5 py-16 max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {products.map((product) => (
           <ProductCard key={product.node.id} product={product} />
         ))}
