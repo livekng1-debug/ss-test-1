@@ -232,6 +232,11 @@ export async function fetchProducts(first = 20, query?: string): Promise<Shopify
   return data?.data?.products?.edges || [];
 }
 
+export async function fetchCollectionProducts(handle: string, first = 50): Promise<ShopifyProduct[]> {
+  const data = await storefrontApiRequest(COLLECTION_PRODUCTS_QUERY, { handle, first });
+  return (data?.data?.collectionByHandle?.products?.edges || []).map((edge: { node: ShopifyProduct['node'] }) => ({ node: edge.node }));
+}
+
 export async function fetchProductByHandle(handle: string): Promise<ShopifyProduct['node'] | null> {
   const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
   return data?.data?.productByHandle || null;
