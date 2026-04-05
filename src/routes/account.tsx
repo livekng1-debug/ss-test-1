@@ -5,16 +5,77 @@ import { getOrderDisplayStatus, type ShopifyOrder } from "@/lib/shopify-customer
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, LogOut, Package, Loader2 } from "lucide-react";
 
+const DEMO_ORDERS: ShopifyOrder[] = [
+  {
+    id: "demo-1",
+    name: "#1042",
+    orderNumber: 1042,
+    processedAt: "2026-03-28T14:30:00Z",
+    financialStatus: "PAID",
+    fulfillmentStatus: "FULFILLED",
+    totalPrice: { amount: "89.00", currencyCode: "USD" },
+    lineItems: { edges: [{ node: { title: "Sunslayer Vintage Tee - Black", quantity: 1, variant: { image: null, price: { amount: "45.00", currencyCode: "USD" } } } }, { node: { title: "Sunslayer Dad Hat", quantity: 1, variant: { image: null, price: { amount: "44.00", currencyCode: "USD" } } } }] },
+    successfulFulfillments: [{ trackingCompany: "USPS", trackingInfo: [{ number: "9400111899223456789012", url: "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223456789012" }] }],
+  },
+  {
+    id: "demo-2",
+    name: "#1038",
+    orderNumber: 1038,
+    processedAt: "2026-03-20T09:15:00Z",
+    financialStatus: "PAID",
+    fulfillmentStatus: "FULFILLED",
+    totalPrice: { amount: "55.00", currencyCode: "USD" },
+    lineItems: { edges: [{ node: { title: "Sunslayer Logo Hoodie - Cream", quantity: 1, variant: { image: null, price: { amount: "55.00", currencyCode: "USD" } } } }] },
+    successfulFulfillments: [{ trackingCompany: "UPS", trackingInfo: [{ number: "1Z999AA10123456784", url: "https://www.ups.com/track?tracknum=1Z999AA10123456784" }] }],
+  },
+  {
+    id: "demo-3",
+    name: "#1045",
+    orderNumber: 1045,
+    processedAt: "2026-04-03T11:00:00Z",
+    financialStatus: "PAID",
+    fulfillmentStatus: "UNFULFILLED",
+    totalPrice: { amount: "35.00", currencyCode: "USD" },
+    lineItems: { edges: [{ node: { title: "Sunslayer Records Tee - White", quantity: 1, variant: { image: null, price: { amount: "35.00", currencyCode: "USD" } } } }] },
+    successfulFulfillments: [],
+  },
+  {
+    id: "demo-4",
+    name: "#1047",
+    orderNumber: 1047,
+    processedAt: "2026-04-04T16:45:00Z",
+    financialStatus: "PAID",
+    fulfillmentStatus: "UNFULFILLED",
+    totalPrice: { amount: "70.00", currencyCode: "USD" },
+    lineItems: { edges: [{ node: { title: "Sunslayer Ring of Time Tee", quantity: 2, variant: { image: null, price: { amount: "35.00", currencyCode: "USD" } } } }] },
+    successfulFulfillments: [{ trackingCompany: "FedEx", trackingInfo: [{ number: "794644790132", url: "https://www.fedex.com/fedextrack/?trknbr=794644790132" }] }],
+  },
+];
+
 export const Route = createFileRoute("/account")({
   component: AccountPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    demo: (search.demo as string) === "true",
+  }),
 });
 
 function AccountPage() {
   const { customer, accessToken, isLoading, error, login, signup, logout, refreshCustomer } = useAuthStore();
+  const { demo } = Route.useSearch();
 
   useEffect(() => {
     if (accessToken) refreshCustomer();
   }, [accessToken, refreshCustomer]);
+
+  if (demo) {
+    return (
+      <AccountDashboard
+        customer={{ firstName: "Jordan", lastName: "Smith", email: "jordan.smith@email.com" }}
+        orders={DEMO_ORDERS}
+        onLogout={() => {}}
+      />
+    );
+  }
 
   if (!accessToken || !customer) {
     return <LoginSignupForm isLoading={isLoading} error={error} onLogin={login} onSignup={signup} />;
