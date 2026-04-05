@@ -11,7 +11,6 @@ export const verifyShopifyPassword = createServerFn({ method: 'POST' })
   })
   .handler(async ({ data }) => {
     try {
-      // POST to Shopify's password page with form data
       const formBody = new URLSearchParams();
       formBody.append('password', data.password);
 
@@ -21,12 +20,14 @@ export const verifyShopifyPassword = createServerFn({ method: 'POST' })
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formBody.toString(),
-        redirect: 'manual', // Don't follow redirects — a 302 means success
+        redirect: 'manual',
       });
 
-      // Shopify redirects (302) to the storefront on correct password
-      // Returns 200 (re-renders password page) on wrong password
-      const isCorrect = response.status === 302;
+      // Shopify returns 302 for both correct and wrong passwords.
+      // Correct password → redirects to store root (e.g. "/" or the store domain)
+      // Wrong password → redirects back to "/password"
+      const location = response.headers.get('location') || '';
+      const isCorrect = response.status === 302 && !location.includes('/password');
 
       return { success: isCorrect };
     } catch (error) {
