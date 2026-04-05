@@ -192,6 +192,27 @@ export const CartDrawer = ({ demo }: { demo?: boolean } = {}) => {
                   >
                     {isLoading || isSyncing ? <Loader2 className="w-4 h-4 animate-spin" /> : "CHECK OUT"}
                   </button>
+
+                  {/* Shop Pay */}
+                  <button className="w-full py-3 mt-2 rounded flex items-center justify-center" style={{ backgroundColor: "#5C5CFF" }}>
+                    <span className="text-white text-sm font-semibold tracking-wide">shop</span>
+                    <span className="text-white text-sm font-light ml-0.5">Pay</span>
+                  </button>
+
+                  {/* Apple Pay */}
+                  <button className="w-full py-3 mt-2 bg-foreground text-background rounded flex items-center justify-center">
+                    <svg className="h-5" viewBox="0 0 50 20" fill="currentColor"><path d="M9.6 5.3c-.6.7-1.5 1.2-2.4 1.1-.1-1 .4-2 .9-2.6C8.7 3.1 9.7 2.6 10.5 2.5c.1 1-.3 2-.9 2.8zm.9 1.4c-1.3-.1-2.5.8-3.1.8s-1.6-.7-2.7-.7c-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.3 1 8.4.7 1 1.5 2.2 2.6 2.1 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.7 1.1 0 1.8-1 2.5-2.1.8-1.2 1.1-2.3 1.1-2.4-1.2-.5-2.1-1.8-2.1-3.4 0-1.4.7-2.5 1.7-3.2-.9-1.1-2.1-1.6-3-1.6zm11.4-3.2v16h2.3v-5.5h3.2c2.9 0 5-2 5-5.3s-2-5.2-4.9-5.2h-5.6zm2.3 2h2.6c2 0 3.1 1.1 3.1 3.2 0 2.1-1.1 3.2-3.1 3.2h-2.6V5.5zm12.7 14.2c1.5 0 2.8-.7 3.4-1.9h.1v1.7h2.1V11.8c0-2.2-1.7-3.6-4.4-3.6-2.5 0-4.3 1.4-4.3 3.3h2c.2-1 1.1-1.5 2.2-1.5 1.4 0 2.2.7 2.2 1.9v.8l-2.9.2c-2.7.2-4.2 1.2-4.2 3.2 0 2 1.5 3.3 3.8 3.3zm.6-1.8c-1.2 0-2-.6-2-1.5 0-1 .7-1.5 2.2-1.6l2.6-.2v.9c0 1.4-1.2 2.4-2.8 2.4zm7.5 5.5c2.2 0 3.3-.8 4.2-3.4l4-11.3h-2.4l-2.7 8.6h-.1l-2.7-8.6h-2.4l3.9 10.8-.2.7c-.4 1.2-1 1.6-2.1 1.6-.2 0-.6 0-.7-.1v1.7c.2.1.7.1 1.1.1z"/></svg>
+                  </button>
+
+                  {/* PayPal */}
+                  <button className="w-full py-3 mt-2 rounded flex items-center justify-center" style={{ backgroundColor: "#FFC439" }}>
+                    <svg className="h-5" viewBox="0 0 100 26" fill="none"><path d="M12.5 3.5h7.3c4.8 0 6.6 2.5 6.1 6.2-.6 4.9-3.7 7.6-8.4 7.6h-2c-.6 0-1 .5-1.1 1l-1 6.2c-.1.4-.4.7-.8.7H9.2c-.5 0-.8-.4-.7-.9l3-19.8c.1-.5.5-1 1-1z" fill="#003087"/><path d="M39.2 3.5h7.3c4.8 0 6.6 2.5 6.1 6.2-.6 4.9-3.7 7.6-8.4 7.6h-2c-.6 0-1 .5-1.1 1l-1 6.2c-.1.4-.4.7-.8.7H36c-.5 0-.8-.4-.7-.9l3-19.8c.1-.5.5-1 .9-1z" fill="#0070E0"/><path d="M22.1 9.7c.1-.5.5-1 1.1-1h5.5c3 0 5.3 1 5.6 4.3.2 1.8-.1 3.3-1 4.5-1.2 1.5-3.2 2.3-5.5 2.3h-2c-.6 0-1 .5-1.1 1l-1 6.2c-.1.4-.4.7-.8.7h-3c-.5 0-.8-.4-.7-.9l2.9-17.1z" fill="#003087"/><path d="M65 3.8h3.5c.3 0 .6.3.5.6l-3 19.1c-.1.3-.3.5-.6.5H62c-.3 0-.5-.3-.5-.6l3-19.1c.1-.3.3-.5.5-.5zM59 15.5l1.5-9.1c.1-.3.3-.5.6-.5h3.5c.3 0 .6.3.5.6 0 0-1 6-1.6 9.2-.6 3.2-3.3 5.2-6.6 5.2h-.6c-.3 0-.6-.3-.5-.6l.4-2.3c.1-.3.3-.5.6-.5h.4c1.5 0 2.1-.8 2.3-2z" fill="#003087"/><path d="M73 3.8h3.5c.3 0 .6.3.5.6l-3 19.1c-.1.3-.3.5-.6.5h-3.5c-.3 0-.6-.3-.5-.6l3-19.1c.1-.3.3-.5.6-.5z" fill="#0070E0"/></svg>
+                  </button>
+
+                  {/* Google Pay */}
+                  <button className="w-full py-3 mt-2 bg-foreground text-background rounded flex items-center justify-center">
+                    <span className="text-sm font-medium">G Pay</span>
+                  </button>
                 </div>
               </div>
             </>
