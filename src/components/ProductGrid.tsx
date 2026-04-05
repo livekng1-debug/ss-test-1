@@ -3,7 +3,7 @@ import { fetchCollectionProducts, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "./ProductCard";
 import { Loader2 } from "lucide-react";
 
-const COLLECTION_HANDLE = "ss-new-beginnings-capsule-001";
+const COLLECTION_HANDLE = "ss-capsule-001";
 
 export function ProductGrid() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
