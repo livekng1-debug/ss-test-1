@@ -174,7 +174,7 @@ function LoginSignupForm({
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Password (min 5 characters)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
