@@ -54,8 +54,8 @@ const DEMO_ORDERS: ShopifyOrder[] = [
 
 export const Route = createFileRoute("/account")({
   component: AccountPage,
-  validateSearch: (search: Record<string, unknown>) => ({
-    demo: (search.demo as string) === "true" ? true : undefined,
+  validateSearch: (search: Record<string, unknown>): { demo?: boolean } => ({
+    ...(search.demo === "true" ? { demo: true } : {}),
   }),
 });
 
