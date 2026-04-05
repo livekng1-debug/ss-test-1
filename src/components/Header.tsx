@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { CartDrawer } from "./CartDrawer";
 import { SearchOverlay } from "./SearchOverlay";
 import { AccountDropdown } from "./AccountDropdown";
@@ -7,6 +7,7 @@ import { AccountDropdown } from "./AccountDropdown";
 export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const demo = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("demo") === "true";
 
   return (
     <>
@@ -35,7 +36,7 @@ export function Header() {
             >
               Account
             </button>
-            <CartDrawer />
+            <CartDrawer demo={demo} />
           </div>
         </div>
       </header>
