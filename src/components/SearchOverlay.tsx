@@ -58,8 +58,8 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
   return (
     <>
-      {/* Dimmed backdrop */}
-      <div className="fixed inset-0 z-[55] bg-black/30" />
+      {/* Invisible backdrop for click-outside */}
+      <div className="fixed inset-0 z-[55]" />
 
       {/* Centered dropdown */}
       <div
