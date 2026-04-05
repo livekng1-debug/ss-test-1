@@ -23,8 +23,8 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <button className="text-sm text-foreground hover:opacity-60 transition-opacity" style={{ fontFamily: "'Pinyon Script', cursive" }} aria-label="Cart">
-          Bag [ {totalItems} ]
+        <button className="text-[11px] uppercase tracking-ro text-foreground hover:opacity-60 transition-opacity" aria-label="Cart">
+          BAG [ {totalItems} ]
         </button>
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md flex flex-col h-full border-l border-border bg-background">
