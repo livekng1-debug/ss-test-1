@@ -25,6 +25,7 @@ function PasswordPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       {/* Main content — centered brand name */}
+      {/* Main content — centered brand name */}
       <div className="flex flex-1 flex-col items-center justify-center px-4">
         <h1
           className="text-6xl sm:text-8xl md:text-9xl font-normal text-foreground"
@@ -36,17 +37,19 @@ function PasswordPage() {
         <p className="mt-6 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           Coming Soon
         </p>
+      </div>
 
-        {/* Enter password toggle */}
+      {/* Enter password section — just above footer */}
+      <div className="px-5 py-8 flex flex-col items-center">
         {!showPasswordInput ? (
           <button
             onClick={() => setShowPasswordInput(true)}
-            className="mt-10 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-foreground transition-colors underline underline-offset-4"
+            className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-foreground transition-colors underline underline-offset-4"
           >
             Enter using password
           </button>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-8 flex w-full max-w-xs items-center gap-2">
+          <form onSubmit={handleSubmit} className="flex w-full max-w-xs items-center gap-2">
             <input
               type="password"
               placeholder="Password"
