@@ -8,7 +8,7 @@ interface AuthStore {
   isLoading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
+  signup: (email: string, password: string, firstName: string, lastName: string, acceptsMarketing?: boolean) => Promise<void>;
   logout: () => void;
   refreshCustomer: () => Promise<void>;
 }
