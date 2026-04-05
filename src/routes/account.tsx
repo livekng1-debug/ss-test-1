@@ -280,7 +280,7 @@ function AccountDashboard({
                           <img
                             src={item.node.variant.image.url}
                             alt={item.node.variant.image.altText || item.node.title}
-                            className="w-10 h-10 object-cover rounded"
+                            className="w-16 h-16 object-cover rounded border border-border"
                           />
                         )}
                         <div className="flex-1 min-w-0">
