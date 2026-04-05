@@ -19,7 +19,7 @@ function ContactPage() {
         Email:
       </h2>
       <p>
-        support@sunslayerhills.com
+        help@sunslayerhills.com
       </p>
 
       <h2 className="text-lg uppercase tracking-widest text-foreground font-bold pt-6" style={{ fontFamily: "'Courier New', monospace" }}>

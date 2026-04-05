@@ -62,7 +62,7 @@ function ShippingPolicyPage() {
         No Returns or Exchanges - All Sales are Final.
       </p>
       <p>
-        We allow 30-day returns if your order is damaged or irregular please contact support@sunslayerhills.com and we will replace it for you. You must contact us within 30 business days of receiving your order.
+        We allow 30-day returns if your order is damaged or irregular please contact help@sunslayerhills.com and we will replace it for you. You must contact us within 30 business days of receiving your order.
       </p>
     </PolicyPage>
   );

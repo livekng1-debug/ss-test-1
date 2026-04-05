@@ -19,7 +19,7 @@ function RefundPolicyPage() {
         How to Start a Return:
       </h2>
       <p>
-        To start a return, you can contact us at support@sunslayerhills.com. If your return is accepted, we'll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.
+        To start a return, you can contact us at help@sunslayerhills.com. If your return is accepted, we'll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.
       </p>
 
       <h2 className="text-lg uppercase tracking-widest text-foreground font-bold pt-6" style={{ fontFamily: "'Courier New', monospace" }}>
