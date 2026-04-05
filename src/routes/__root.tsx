@@ -1,6 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation, useNavigate } from "@tanstack/react-router";
 import { Toaster } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePasswordStore } from "@/stores/passwordStore";
 
 import appCss from "../styles.css?url";
@@ -88,17 +88,24 @@ function RootComponent() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isUnlocked, checkStorage } = usePasswordStore();
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     checkStorage();
+    setChecked(true);
   }, [checkStorage]);
 
   useEffect(() => {
+    if (!checked) return;
     const isPasswordPage = location.pathname === '/password';
     if (!isUnlocked && !isPasswordPage) {
       navigate({ to: '/password' });
     }
-  }, [isUnlocked, location.pathname, navigate]);
+  }, [checked, isUnlocked, location.pathname, navigate]);
+
+  // Block rendering until storage is checked, unless on password page
+  if (!checked) return null;
+  if (!isUnlocked && location.pathname !== '/password') return null;
 
   return (
     <>
