@@ -182,6 +182,20 @@ function LoginSignupForm({
               className="w-full border border-border bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
             />
 
+            {mode === "signup" && (
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={acceptsMarketing}
+                  onChange={(e) => setAcceptsMarketing(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 accent-foreground"
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  Sign up for exclusive updates, new arrivals, and insider-only discounts.
+                </span>
+              </label>
+            )}
+
             {(localError || error) && (
               <p className="text-sm text-red-500">{localError || error}</p>
             )}

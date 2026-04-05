@@ -33,10 +33,10 @@ export const useAuthStore = create<AuthStore>()(
         }
       },
 
-      signup: async (email, password, firstName, lastName) => {
+      signup: async (email, password, firstName, lastName, acceptsMarketing = true) => {
         set({ isLoading: true, error: null });
         try {
-          await createCustomer(email, password, firstName, lastName);
+          await createCustomer(email, password, firstName, lastName, acceptsMarketing);
           const token = await loginCustomer(email, password);
           const customer = await fetchCustomer(token.accessToken);
           set({ accessToken: token.accessToken, customer, isLoading: false });
