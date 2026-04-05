@@ -119,7 +119,7 @@ function LoginSignupForm({
       if (mode === "login") {
         await onLogin(email, password);
       } else {
-        await onSignup(email, password, firstName, lastName);
+        await onSignup(email, password, firstName, lastName, acceptsMarketing);
       }
     } catch (err) {
       setLocalError(err instanceof Error ? err.message : "Something went wrong");
