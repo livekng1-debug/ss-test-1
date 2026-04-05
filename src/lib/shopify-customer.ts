@@ -3,7 +3,7 @@ import { storefrontApiRequest } from "./shopify";
 const CUSTOMER_CREATE_MUTATION = `
   mutation customerCreate($input: CustomerCreateInput!) {
     customerCreate(input: $input) {
-      customer { id firstName lastName email }
+      customer { id firstName lastName email acceptsMarketing }
       customerUserErrors { code field message }
     }
   }
@@ -114,9 +114,9 @@ export interface ShopifyOrder {
   }>;
 }
 
-export async function createCustomer(email: string, password: string, firstName: string, lastName: string) {
+export async function createCustomer(email: string, password: string, firstName: string, lastName: string, acceptsMarketing = true) {
   const data = await storefrontApiRequest(CUSTOMER_CREATE_MUTATION, {
-    input: { email, password, firstName, lastName },
+    input: { email, password, firstName, lastName, acceptsMarketing },
   });
   const errors = data?.data?.customerCreate?.customerUserErrors || [];
   if (errors.length > 0) {

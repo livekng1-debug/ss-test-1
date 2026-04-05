@@ -102,13 +102,14 @@ function LoginSignupForm({
   isLoading: boolean;
   error: string | null;
   onLogin: (email: string, password: string) => Promise<void>;
-  onSignup: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
+  onSignup: (email: string, password: string, firstName: string, lastName: string, acceptsMarketing?: boolean) => Promise<void>;
 }) {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [acceptsMarketing, setAcceptsMarketing] = useState(true);
   const [localError, setLocalError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -118,7 +119,7 @@ function LoginSignupForm({
       if (mode === "login") {
         await onLogin(email, password);
       } else {
-        await onSignup(email, password, firstName, lastName);
+        await onSignup(email, password, firstName, lastName, acceptsMarketing);
       }
     } catch (err) {
       setLocalError(err instanceof Error ? err.message : "Something went wrong");
@@ -173,13 +174,27 @@ function LoginSignupForm({
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Password (min 5 characters)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={5}
               className="w-full border border-border bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
             />
+
+            {mode === "signup" && (
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={acceptsMarketing}
+                  onChange={(e) => setAcceptsMarketing(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 accent-foreground"
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  Sign up for exclusive updates, new arrivals, and insider-only discounts.
+                </span>
+              </label>
+            )}
 
             {(localError || error) && (
               <p className="text-sm text-red-500">{localError || error}</p>
