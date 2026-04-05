@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CartDrawer } from "./CartDrawer";
 import { SearchOverlay } from "./SearchOverlay";
+import { AccountDropdown } from "./AccountDropdown";
 
 export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   return (
     <>
@@ -27,14 +29,18 @@ export function Header() {
           </Link>
 
           <div className="flex items-center gap-6">
-            <Link to="/account" className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity">
+            <button
+              onClick={() => setAccountOpen(!accountOpen)}
+              className="text-[11px] uppercase tracking-ro text-foreground hidden sm:inline cursor-pointer hover:opacity-60 transition-opacity"
+            >
               Account
-            </Link>
+            </button>
             <CartDrawer />
           </div>
         </div>
       </header>
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <AccountDropdown isOpen={accountOpen} onClose={() => setAccountOpen(false)} />
     </>
   );
 }
