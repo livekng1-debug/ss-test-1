@@ -1,5 +1,7 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation, useNavigate } from "@tanstack/react-router";
 import { Toaster } from "sonner";
+import { useEffect } from "react";
+import { usePasswordStore } from "@/stores/passwordStore";
 
 import appCss from "../styles.css?url";
 

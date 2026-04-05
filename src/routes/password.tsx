@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Instagram } from "lucide-react";
+import { verifyShopifyPassword } from "@/lib/verify-shopify-password";
+import { usePasswordStore } from "@/stores/passwordStore";
 
 export const Route = createFileRoute("/password")({
   component: PasswordPage,
@@ -10,22 +12,37 @@ function PasswordPage() {
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const unlock = usePasswordStore((s) => s.unlock);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, any non-empty password grants access
-    if (password.trim()) {
-      navigate({ to: "/" });
-    } else {
+    if (!password.trim()) {
       setError("Please enter a password.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const result = await verifyShopifyPassword({ data: { password: password.trim() } });
+      if (result.success) {
+        unlock();
+        navigate({ to: "/" });
+      } else {
+        setError("Wrong password. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      {/* Main content — centered brand name */}
-      {/* Main content — centered brand name */}
       <div className="flex flex-1 flex-col items-center justify-center px-4">
         <h1
           className="text-6xl sm:text-8xl md:text-9xl font-normal text-foreground"
@@ -59,16 +76,24 @@ function PasswordPage() {
                 setError("");
               }}
               autoFocus
-              className="flex-1 border-b border-border bg-transparent py-2 text-center text-[11px] uppercase tracking-[0.15em] text-foreground outline-none placeholder:text-muted-foreground/40 focus:border-foreground transition-colors"
+              disabled={loading}
+              className="flex-1 border-b border-border bg-transparent py-2 text-center text-[11px] uppercase tracking-[0.15em] text-foreground outline-none placeholder:text-muted-foreground/40 focus:border-foreground transition-colors disabled:opacity-50"
             />
             <button
               type="submit"
-              className="text-foreground hover:opacity-60 transition-opacity p-1"
+              disabled={loading}
+              className="text-foreground hover:opacity-60 transition-opacity p-1 disabled:opacity-30"
               aria-label="Submit password"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              {loading ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" className="animate-spin" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" strokeDasharray="60" strokeDashoffset="20" />
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              )}
             </button>
           </form>
         )}
