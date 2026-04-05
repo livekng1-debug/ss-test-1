@@ -41,7 +41,7 @@ export function Footer() {
             <Link to="/refund-policy" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
             <Link to="/contact" className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Contact Information</Link>
           </div>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://www.instagram.com/sunslayerhills/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
             <Instagram size={20} strokeWidth={1.5} />
           </a>
         </div>
