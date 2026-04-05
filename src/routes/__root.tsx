@@ -1,5 +1,7 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation, useNavigate } from "@tanstack/react-router";
 import { Toaster } from "sonner";
+import { useEffect } from "react";
+import { usePasswordStore } from "@/stores/passwordStore";
 
 import appCss from "../styles.css?url";
 
@@ -83,6 +85,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isUnlocked, checkStorage } = usePasswordStore();
+
+  useEffect(() => {
+    checkStorage();
+  }, [checkStorage]);
+
+  useEffect(() => {
+    const isPasswordPage = location.pathname === '/password';
+    if (!isUnlocked && !isPasswordPage) {
+      navigate({ to: '/password' });
+    }
+  }, [isUnlocked, location.pathname, navigate]);
+
   return (
     <>
       <Outlet />
