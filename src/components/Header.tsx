@@ -14,9 +14,6 @@ export function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background">
         <div className="flex items-center justify-between px-5 py-4">
           <div className="flex items-center gap-6">
-            <button className="text-[11px] uppercase tracking-ro text-foreground hover:opacity-60 transition-opacity">
-              Menu
-            </button>
             <button
               onClick={() => setSearchOpen(true)}
               className="text-[11px] uppercase tracking-ro text-foreground hover:opacity-60 transition-opacity"
