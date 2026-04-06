@@ -13,13 +13,13 @@ function Index() {
   useCartSync();
 
   return (
-    <>
+    <div className="sm:snap-none snap-y snap-proximity h-screen overflow-y-auto">
       <Header />
       <main>
         <HeroSection />
         <ProductGrid />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
