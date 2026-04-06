@@ -13,7 +13,7 @@ function Index() {
   useCartSync();
 
   return (
-    <div className="sm:snap-none snap-y snap-mandatory h-screen overflow-y-auto">
+    <div className="sm:snap-none snap-y snap-proximity h-screen overflow-y-auto">
       <Header />
       <main>
         <HeroSection />
