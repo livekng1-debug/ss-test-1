@@ -35,8 +35,10 @@ export function ProductGrid() {
   return (
     <section id="products" className="px-5 py-16 max-w-[1400px] mx-auto">
       <div className="grid grid-cols-2 gap-px bg-border">
-        {products.map((product) => (
-          <ProductCard key={product.node.id} product={product} />
+        {products.map((product, index) => (
+          <div key={product.node.id} className={index % 2 === 0 ? "snap-start scroll-mt-16 sm:snap-align-none" : ""}>
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </section>
