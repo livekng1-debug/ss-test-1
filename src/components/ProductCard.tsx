@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link to="/product/$handle" params={{ handle: node.handle }} className="group block bg-background">
+    <Link to="/product/$handle" params={{ handle: node.handle }} className="group block bg-background snap-start">
       <div className="aspect-square bg-secondary overflow-hidden relative">
         {image ? (
           <img
